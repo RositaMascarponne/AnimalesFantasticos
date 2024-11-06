@@ -7,3 +7,293 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     Author     : Rosita
 */
 
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 2 nov 2024, 9:51:48
+    Author     : Rosita
+*/
+
+body {
+    background-color: #f3eded;
+    margin: 0 auto;
+    
+
+}
+
+header {
+    background-color: #444;
+    padding: 30px 10px 40px 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content:left; /* Centra las cajas horizontalmente */
+
+    
+}
+
+
+
+h1 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #4CAF50;
+    margin-left: 15px;
+    letter-spacing: 0.2em;
+    font-size: 2.5em;
+    font-weight: 600;
+
+}
+
+
+
+#h2index{
+    margin-left: 20px;
+    
+}
+
+
+.app {
+    color: #dfab00;
+    font-size: 1em;
+    letter-spacing: 0em;
+}
+
+h2 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #777;
+
+    padding: 10px;
+    letter-spacing: 0.1em;
+    font-size: 1.4em;
+    font-weight: 600;
+     margin-top: -10px;
+
+}
+
+    
+
+main{
+    display: flex;
+    justify-content:space-between;  /* Espacio entre los contenedores */
+    gap: 20px; /* Espacio entre las cajas */
+    padding: 20px;
+    /* Alineación vertical opcional para centrar en toda la página */
+    align-items: center;
+  
+}
+
+.container{
+    
+}
+
+.cont-left{
+/*background-color: #4CAF50;*/
+flex:66%;
+margin-right: 10px;
+}
+
+.cont-right{
+   /* background-color: #ff0606c7;*/
+    flex:33%;
+    margin-left: 10px;
+}
+
+
+
+.form , .res, .lista {
+    
+    margin-bottom: 20px;
+    width: 100%;
+    background-color: #e6e9e9;
+    padding:20px 0px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding-left: 20px;
+
+}
+
+
+.lista{
+    background-color: #d1d1d1;
+}
+
+
+
+.container form * {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: rgb(60, 54, 95);
+}
+
+/* Estilo para el label */
+.container label {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+/* Estilo para el input */
+.container input[type="text"] {
+    margin-top: 10px;
+    padding: 8px;
+    width: 100%;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    /* Evita que el padding altere el ancho */
+}
+
+/* Estilo para el botón */
+.container button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.container button:hover {
+    background-color: #45a049;
+    /* Color al pasar el ratón */
+
+}
+
+p {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #fff;
+}
+
+nav {
+    margin-left: 3em;
+    width: 20em;
+    background-color: #e6e9e9;
+    padding: 20px 5px;
+    /* Usa espacio en formato de 20px arriba/abajo y 50px derecha/izquierda */
+    border-radius: 8px;
+    /* Bordes redondeados, opcional */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Sombra para destacar el contenedor, opcional */
+}
+
+nav ul {
+
+    list-style: none;
+
+}
+
+nav ul li {
+
+
+    margin-bottom: 35px;
+    text-decoration: none;
+
+}
+
+
+nav ul li a {
+    background-color: #4CAF50;
+    width: 50%;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: #fff;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 800;
+
+}
+
+
+nav ul li a:hover {
+    background-color: #45a049;
+    width: 50%;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: #eee;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 800;
+
+}
+
+.fot{
+    display: flex;
+    justify-content: center;
+
+}
+
+footer{
+    display: flex;
+    justify-content: center;
+}
+
+#return {
+    display: inline-block;
+    /* Para que se comporte como un botón */
+    margin-top: 20px;
+    /* Margen superior para separar del formulario */
+    background-color: #2e332e;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
+    padding: 10px 20px;
+    width: 30%;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    /* Sin subrayado */
+    text-align: center;
+    /* Centrar el texto */
+    font-weight: bold;
+    /* Texto en negrita */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Sombra para destacar el botón */
+    margin-left: 3em;
+}
+
+#return:hover {
+    background-color: #202220;
+    color: rgb(221, 221, 221);
+}
+
+.atribute {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #333;
+    font-weight: 800;
+}
+
+.value {
+    color: #777;
+}
+
+.mostrar {
+    list-style: none;
+    border-color: #adadad;
+    border-width: 6px;
+    border-radius: 15px;
+    border-style:solid;
+    padding: 15px;
+    
+    background-color:#e6e9e9;
+
+
+}
+
+.listaPersonas {
+    margin-top: 10px;
+   padding: 12px;
+    color: #333;
+
+    list-style: none;
+    text-decoration: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+
+}
+
