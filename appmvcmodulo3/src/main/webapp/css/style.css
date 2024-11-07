@@ -37,7 +37,7 @@ h1 {
     font-weight: 600;
 }
 
-/* Contenedor para centrar ambos menús juntos */
+
 .menus-container {
     display: flex;
     justify-content: center;
@@ -45,7 +45,7 @@ h1 {
     margin-top: 20px;
 }
 
-/* Títulos de los menús */
+
 .menu-title {
     text-align: center;
     font-size: 1.5em;
@@ -53,7 +53,7 @@ h1 {
     margin-bottom: 15px;
 }
 
-/* Estilos para los menús */
+
 .menu, .menu2 {
     width: auto;
     background-color: #e6e9e9;
@@ -72,10 +72,9 @@ nav ul li {
     margin-bottom: 15px;
 }
 
-/* Botones de menú con ancho fijo */
 nav ul li a {
     display: block;
-    width: 200px;  /* Ancho fijo para todos los botones */
+    width: 200px;
     padding: 10px 20px;
     border-radius: 4px;
     text-decoration: none;
@@ -84,7 +83,7 @@ nav ul li a {
     text-align: center;
 }
 
-/* Botones del menú Humanoides (verde) */
+
 .menu ul li a {
     background-color: #4CAF50;
     color: #fff;
@@ -95,13 +94,13 @@ nav ul li a {
     color: #eee;
 }
 
-/* Botones del menú Animales (azul) */
+
 .menu2 ul li a {
-    background-color: #007bff;  /* Azul para botones de Animales */
+    background-color: #007bff;
     color: #fff;
 }
 
 .menu2 ul li a:hover {
-    background-color: #0056b3; /* Azul más oscuro al pasar el cursor */
+    background-color: #0056b3;
     color: #eee;
 }
