@@ -1,54 +1,45 @@
-<%-- 
-    Document   : view
-    Created on : 6 nov 2024, 12:13:41
-    Author     : Rosita
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Animales Fantásticos</title>
         <link rel="icon" href="" type="image/png">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="css/viewcss.css">
     </head>
     <body>
         <header>
-            
             <h1>Animales <span class="app">Fantásticos</span></h1>
-            
         </header>
         <main>
-            
-            <div class="container cont-left">
-            <h2>Mostrar Animales:</h2>
-                <div class="form">
-                    <form method="post" action="viewcontroller">
-                        <label for="id"> ID Animal: </label>
-                        
-                          <input type="text" id="id" name="id" required>
-                        <br>
-                        <br>
-                        <button type="submit">Busca el animal</button>
-                    </form>
+            <div class="container">
+                <!-- Columna izquierda -->
+                <div class="column cont-left">
+                    <h2 class="section-title">Mostrar Animales</h2>
+                    <div class="form">
+                        <form method="post" action="viewcontroller">
+                            <label for="id" class="form-label">ID Animal:</label>
+                            <input type="text" id="id" name="id" class="form-input" required>
+                            <button type="submit" class="submit-btn">Busca el animal</button>
+                        </form>
+                    </div>
+                    <div class="res">
+                        <p><strong>Nombre:</strong> ${nombreAnimal}</p>
+                    </div>
                 </div>
-            <div class="res">
-                <p>Nombre: ${nombreAnimal}</p>
-            </div>
-
-
-            </div>
-            <div class="container cont-right">
-                <div class="lista">
-                <p>La lista<p>
+                
+                <!-- Columna derecha -->
+                <div class="column cont-right">
+                    <h2 class="section-title">Lista de Animales</h2>
+                    <div class="lista">
+                        <p>Aquí se mostrará la lista de animales.</p>
+                    </div>
                 </div>
             </div>
-                 </main>
+        </main>
+        
         <footer>
-                <a  id='return' href='http://localhost:8080/appmvcmodulo3'>Volver</a>
-         </footer>   
-       
-
+            <a id="return" href="http://localhost:8080/appmvcmodulo3">Volver</a>
+        </footer>
     </body>
 </html>

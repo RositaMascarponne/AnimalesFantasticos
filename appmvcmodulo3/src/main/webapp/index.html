@@ -1,34 +1,45 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>MVCapp</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="icon" href="img/persSQL.svg" type="image/png">
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <header>
-            <img src="img/MVCIMG.png">
-            <h1>MVC <span class="app">app</span></h1>
-        </header>
-        <main>
-            <h2  id="h2index">Bienvenid@ a MVC app</h2>
-            <nav class="menu">
-                <ul>
-                    <li><a href="http://localhost:8080/appmvcmodulo3/viewcontroller">Buscar Humanoide</a></li>
-                    <li><a href="http://localhost:8080/appmvcmodulo3/addcontroller">Añadir Humanoide</a></li>
-                    <li><a href="http://localhost:8080/appmvcmodulo3/delcontroller">Eliminar Humanoide</a></li>
-                    <li><a href="http://localhost:8080/appmvcmodulo3/modcontroller">Modificar Humanoide</a></li>
-                </ul>
-            </nav>
-            <nav class="menu2">
-                <ul>
-                    <li><a href="http://localhost:8080/appmvcmodulo3/viewcontroller">Buscar Animal</a></li>
-                    <li><a href="http://localhost:8080/appmvcmodulo3/addcontroller">Añadir Animal</a></li>
-                    <li><a href="http://localhost:8080/appmvcmodulo3/delcontroller">Eliminar Animal</a></li>
-                    <li><a href="http://localhost:8080/appmvcmodulo3/modcontroller">Modificar Animal</a></li>
-                </ul>
-            </nav>
-        
-        </main>
-    </body>
+<head>
+    <title>MVCapp</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="icon" href="img/persSQL.svg" type="image/png">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <img src="img/MVCIMG.png">
+        <h1>MVC <span class="app">app</span></h1>
+    </header>
+    <main>
+        <h2 id="h2index">Bienvenid@ a MVC app</h2>
+        <div class="menus-container">
+            <!-- Título y menú de Humanoides -->
+            <section>
+                <h3 class="menu-title">Humanoides</h3>
+                <nav class="menu">
+                    <ul>
+                        <li><a href="http://localhost:8080/appmvcmodulo3/viewcontroller">Buscar Humanoide</a></li>
+                        <li><a href="http://localhost:8080/appmvcmodulo3/addcontroller">Añadir Humanoide</a></li>
+                        <li><a href="http://localhost:8080/appmvcmodulo3/delcontroller">Eliminar Humanoide</a></li>
+                        <li><a href="http://localhost:8080/appmvcmodulo3/modcontroller">Modificar Humanoide</a></li>
+                    </ul>
+                </nav>
+            </section>
+
+            <!-- Título y menú de Animales -->
+            <section>
+                <h3 class="menu-title">Animales</h3>
+                <nav class="menu2">
+                    <ul>
+                        <li><a href="http://localhost:8080/appmvcmodulo3/viewcontroller">Buscar Animal</a></li>
+                        <li><a href="http://localhost:8080/appmvcmodulo3/addcontroller">Añadir Animal</a></li>
+                        <li><a href="http://localhost:8080/appmvcmodulo3/delcontroller">Eliminar Animal</a></li>
+                        <li><a href="http://localhost:8080/appmvcmodulo3/modcontroller">Modificar Animal</a></li>
+                    </ul>
+                </nav>
+            </section>
+        </div>
+    </main>
+</body>
 </html>
