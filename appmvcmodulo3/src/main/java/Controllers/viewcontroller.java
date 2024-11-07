@@ -4,7 +4,11 @@
  */
 package Controllers;
 
+import Model.DAOAnimal;
+import Model.Animal;
+
 import java.io.IOException;
+import java.sql.SQLException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -28,60 +32,43 @@ public class viewcontroller extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet viewcontroller</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet viewcontroller at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+    
+     private DAOAnimal daoAnimal = new DAOAnimal(); // Instanciamos el DAO para poder usarlo
+     
+     //DO GET
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Si quieres redirigir a alguna página al hacer una solicitud GET, puedes hacerlo aquí
+        request.getRequestDispatcher("view.jsp").forward(request, response); 
+    }
+    
+    
+    //DO POST
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // 1. Obtener el ID del animal desde el formulario
+        String idStr = request.getParameter("id");
+        int id = Integer.parseInt(idStr);  // Convertimos a int el ID que ingresa el usuario
+
+        // 2. Crear un objeto Animal con el ID ingresado
+        Animal animal = new Animal();
+        animal.setId(id);
+
+        String nombre = null;
+        try {
+            // 3. Llamamos al método del DAO para obtener el nombre según el ID
+            nombre = daoAnimal.mostrarAnimal(animal);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
+        // 4. Pasamos el nombre obtenido como atributo al JSP para mostrarlo
+        request.setAttribute("nombreAnimal", nombre);
+        
+        // 5. Redireccionamos al JSP donde se mostrará el resultado
+        request.getRequestDispatcher("view.jsp").forward(request, response); 
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

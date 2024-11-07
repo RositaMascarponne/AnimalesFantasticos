@@ -19,7 +19,7 @@ public class DAOHumanoide { //DAOHumanoide
         //MOSTRAR Humanoide SEGUN ID----------------------------------------------------------------------------
     public String mostrarHumanoide(Humanoide humanoide) throws SQLException {
         String nombre = null;
-        String sql = "SELECT humanoide Nombre FROM Humanoide WHERE HumanoideID = ?";
+        String sql = "SELECT humanoidenombre FROM humanoide WHERE humanoideid = ?";
         
         // Intentamos obtener la conexión desde DatabaseConnection
         try (Connection conn = DatabaseConnection.getConnection(); 
@@ -28,7 +28,7 @@ public class DAOHumanoide { //DAOHumanoide
             st.setInt(1, humanoide.getId());//humanoide.getId() para el señorito Jordi
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
-                nombre = rs.getString("humanoideNombre");//humanoideNombre
+                nombre = rs.getString("humanoidenombre");//humanoideNombre
             }
         }
         return nombre;

@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Model;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -19,7 +20,7 @@ public class DAOAnimal { //DAOHumanoide
         //MOSTRAR ANIMAL SEGUN ID----------------------------------------------------------------------------
     public String mostrarAnimal(Animal animal) throws SQLException {//mostrarHumanoide (Humanoide humanoide)
         String nombre = null;
-        String sql = "SELECT animalNombre FROM animal WHERE animalID = ?";//Cambia animal por Humanoide
+        String sql = "SELECT animalnombre FROM animales WHERE animalid = ?";//Cambia animal por Humanoide
         
         // Intentamos obtener la conexión desde DatabaseConnection
         try (Connection conn = DatabaseConnection.getConnection(); 
@@ -28,7 +29,7 @@ public class DAOAnimal { //DAOHumanoide
             st.setInt(1, animal.getId());//humanoide.getId() para el señorito Jordi
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
-                nombre = rs.getString("animalNombre");//humanoideNombre
+                nombre = rs.getString("animalnombre");//humanoideNombre
             }
         }
         return nombre;

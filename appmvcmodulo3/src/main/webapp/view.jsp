@@ -24,10 +24,17 @@
             <div class="container cont-left">
             <h2>Mostrar Animales:</h2>
                 <div class="form">
-                    <p>El formulario<p>
+                    <form method="post" action="viewcontroller">
+                        <label for="id"> ID Animal: </label>
+                        
+                          <input type="text" id="id" name="id" required>
+                        <br>
+                        <br>
+                        <button type="submit">Busca el animal</button>
+                    </form>
                 </div>
             <div class="res">
-                <p>Resultado</p>
+                <p>Nombre: ${nombreAnimal}</p>
             </div>
 
 

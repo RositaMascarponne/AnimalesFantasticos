@@ -90,13 +90,13 @@ main{
 
 .cont-left{
 /*background-color: #4CAF50;*/
-flex:66%;
+flex:33%;
 margin-right: 10px;
 }
 
 .cont-right{
    /* background-color: #ff0606c7;*/
-    flex:33%;
+    flex:66%;
     margin-left: 10px;
 }
 
@@ -124,6 +124,7 @@ margin-right: 10px;
 .container form * {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     color: rgb(60, 54, 95);
+    
 }
 
 /* Estilo para el label */
@@ -136,6 +137,7 @@ margin-right: 10px;
 /* Estilo para el input */
 .container input[type="text"] {
     margin-top: 10px;
+   
     padding: 8px;
     width: 100%;
     border: 2px solid #ccc;
