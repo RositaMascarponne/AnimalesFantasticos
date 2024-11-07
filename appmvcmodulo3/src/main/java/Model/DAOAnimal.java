@@ -37,7 +37,7 @@ public class DAOAnimal { //DAOHumanoide
     }
 
     //Mostrar TODO-----------------------------------------------------------------------
-    public List<Animal> mostrarPersonaFull() throws SQLException {
+    public List<Animal> mostrarAnimalFull() throws SQLException {
 
         List<Animal> animalList = new ArrayList<>();
         String sql = "SELECT * FROM animales";
