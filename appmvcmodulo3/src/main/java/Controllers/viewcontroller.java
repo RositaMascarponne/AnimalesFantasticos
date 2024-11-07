@@ -34,45 +34,69 @@ public class viewcontroller extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    private DAOAnimal daoAnimal = new DAOAnimal(); // Instanciamos el DAO para poder usarlo. No tocar esto
+    private DAOHumanoide daoHumanoide = new DAOHumanoide();
     
-     private DAOAnimal daoAnimal = new DAOAnimal(); // Instanciamos el DAO para poder usarlo. No tocar esto
-     
-     //DO GET
+    
+    
+
+    // DO GET: Redirige a la vista correspondiente según la entidad especificada
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Si quieres redirigir a alguna página al hacer una solicitud GET, puedes hacerlo aquí
-        request.getRequestDispatcher("viewAnimal.jsp").forward(request, response); //cambiar a add.jsp, del.jsp o mod.jsp segun convenga
+        String tipoEntidad = request.getParameter("tipoEntidad");
+
+        if ("animal".equals(tipoEntidad)) {
+            request.getRequestDispatcher("viewAnimal.jsp").forward(request, response);
+        } else if ("humanoide".equals(tipoEntidad)) {
+            request.getRequestDispatcher("viewHumanoide.jsp").forward(request, response);
+        } else {
+            // Si no se especifica, redirigir a una página de error o a una página por defecto
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Tipo de entidad no especificado.");
+        }
     }
-    
-    
+
     //DO POST
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
+
         // 1. Obtener el ID del animal desde el formulario
         String idStr = request.getParameter("id"); //esto recoge la id del formulario. Ojo! Es String!
         int id = Integer.parseInt(idStr);  // Convertimos a int el ID que ingresa el usuario. Problema arregaldo
-    
-        // 2. Crear un objeto Animal con el ID ingresado. O humanoide
-        Animal animal = new Animal();
-        animal.setId(id);//Supongo que en delete tambien hay que ponerlo
 
-        String nombre = null;
-        
+        String tipoEntidad = request.getParameter("tipoEntidad");  // Puede ser animal o humanoide
+
+        // 2. Crear un objeto Animal o Humanoide con el ID ingresado. 
         try {
-            // 3. Llamamos al método del DAO para obtener el nombre según el ID
-            nombre = daoAnimal.mostrarAnimal(animal);//LLamar funcion aqui eh? Ya sabes, quieres añadir, borrar y esas cositas del CRUD
+            if ("animal".equals(tipoEntidad)) {
+                Animal animal = new Animal();
+                animal.setId(id);
+
+                // Lógica para obtener el nombre del animal
+                String nombreAnimal = daoAnimal.mostrarAnimal(animal);
+                request.setAttribute("nombreAnimal", nombreAnimal);
+                request.getRequestDispatcher("animalView.jsp").forward(request, response);
+
+            } else if ("humanoide".equals(tipoEntidad)) {
+                Humanoide humanoide = new Humanoide();
+                humanoide.setId(id);
+
+                // Lógica para obtener el nombre del humanoide
+                String nombreHumanoide = daoHumanoide.mostrarHumanoide(humanoide);
+                request.setAttribute("nombreHumanoide", nombreHumanoide);
+                request.getRequestDispatcher("humanoideView.jsp").forward(request, response);
+
+            } else {
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Tipo de entidad no especificado o inválido.");
+            }
+
         } catch (SQLException e) {
+            // Manejo de excepciones SQL
             e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error de base de datos al intentar obtener la información.");
+        } catch (NumberFormatException e) {
+            // Manejo de errores de conversión de ID
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Formato de ID inválido.");
         }
-
-        // 4. Pasamos el nombre obtenido como atributo al JSP para mostrarlo
-        request.setAttribute("nombreAnimal", nombre);
-        
-        // 5. Redireccionamos al JSP donde se mostrará el resultado
-        request.getRequestDispatcher("viewAnimal.jsp").forward(request, response); //No te me olvides de apuntar al jsp correcto
     }
-
-
 
 }
