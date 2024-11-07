@@ -6,6 +6,8 @@ package Controllers;
 
 import Model.DAOAnimal;
 import Model.Animal;
+import Model.Humanoide;
+import Model.DAOHumanoide;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -33,31 +35,33 @@ public class viewcontroller extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     
-     private DAOAnimal daoAnimal = new DAOAnimal(); // Instanciamos el DAO para poder usarlo
+     private DAOAnimal daoAnimal = new DAOAnimal(); // Instanciamos el DAO para poder usarlo. No tocar esto
      
      //DO GET
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Si quieres redirigir a alguna página al hacer una solicitud GET, puedes hacerlo aquí
-        request.getRequestDispatcher("view.jsp").forward(request, response); 
+        request.getRequestDispatcher("viewAnimal.jsp").forward(request, response); //cambiar a add.jsp, del.jsp o mod.jsp segun convenga
     }
     
     
     //DO POST
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
         // 1. Obtener el ID del animal desde el formulario
-        String idStr = request.getParameter("id");
-        int id = Integer.parseInt(idStr);  // Convertimos a int el ID que ingresa el usuario
-
-        // 2. Crear un objeto Animal con el ID ingresado
+        String idStr = request.getParameter("id"); //esto recoge la id del formulario. Ojo! Es String!
+        int id = Integer.parseInt(idStr);  // Convertimos a int el ID que ingresa el usuario. Problema arregaldo
+    
+        // 2. Crear un objeto Animal con el ID ingresado. O humanoide
         Animal animal = new Animal();
-        animal.setId(id);
+        animal.setId(id);//Supongo que en delete tambien hay que ponerlo
 
         String nombre = null;
+        
         try {
             // 3. Llamamos al método del DAO para obtener el nombre según el ID
-            nombre = daoAnimal.mostrarAnimal(animal);
+            nombre = daoAnimal.mostrarAnimal(animal);//LLamar funcion aqui eh? Ya sabes, quieres añadir, borrar y esas cositas del CRUD
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -66,7 +70,7 @@ public class viewcontroller extends HttpServlet {
         request.setAttribute("nombreAnimal", nombre);
         
         // 5. Redireccionamos al JSP donde se mostrará el resultado
-        request.getRequestDispatcher("view.jsp").forward(request, response); 
+        request.getRequestDispatcher("viewAnimal.jsp").forward(request, response); //No te me olvides de apuntar al jsp correcto
     }
 
 
