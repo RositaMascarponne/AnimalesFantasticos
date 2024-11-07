@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -34,17 +35,32 @@
                         <p><strong>Nombre:</strong> ${nombreHumanoide}</p>
                     </div>
                 </div>
-                
+
                 <!-- Columna derecha -->
                 <div class="column cont-right">
                     <h2 class="section-title">Lista de Humanoides</h2>
                     <div class="lista">
-                        <p>Aquí se mostrará la lista de humanoides.</p>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach var="humanoide" items="${humanoideList}">
+                                <tr>
+                                    <td>${humanoide.id}</td>
+                                    <td>${humanoide.nombre}</td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </main>
-        
+
         <footer>
             <a id="return" href="http://localhost:8080/appmvcmodulo3">Volver</a>
         </footer>

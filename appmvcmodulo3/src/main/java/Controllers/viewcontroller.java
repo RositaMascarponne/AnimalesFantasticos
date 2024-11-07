@@ -17,6 +17,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  *
@@ -36,24 +37,39 @@ public class viewcontroller extends HttpServlet {
      */
     private DAOAnimal daoAnimal = new DAOAnimal(); // Instanciamos el DAO para poder usarlo. No tocar esto
     private DAOHumanoide daoHumanoide = new DAOHumanoide();
-    
-    
-    
 
-    // DO GET: Redirige a la vista correspondiente según la entidad especificada
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String tipoEntidad = request.getParameter("tipoEntidad");
 
+// DO GET: Redirige a la vista correspondiente según la entidad especificada y muestra la lista completa
+@Override
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    String tipoEntidad = request.getParameter("tipoEntidad");
+
+    try {
+        
+    //ANIMAL---------------------------------------------------------------------------------------------------------------------------------------------
         if ("animal".equals(tipoEntidad)) {
+            // Obtener la lista completa de animales
+            List<Animal> animalList = daoAnimal.mostrarAnimalFull();
+            request.setAttribute("animalList", animalList);  // Atributo para la lista completa
             request.getRequestDispatcher("viewAnimal.jsp").forward(request, response);
+     //HUMANOIDE---------------------------------------------------------------------------------------------------------------------------------------------
         } else if ("humanoide".equals(tipoEntidad)) {
+            
+            List<Humanoide> humanoideList = daoHumanoide.mostrarHumanoideFull();
+            request.setAttribute("humanoideList", humanoideList);  // Atributo para la lista completa
             request.getRequestDispatcher("viewHumanoid.jsp").forward(request, response);
+            
+            
         } else {
-            // Si no se especifica, redirigir a una página de error o a una página por defecto
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Tipo de entidad no especificado.");
         }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error de base de datos al intentar obtener la información.");
     }
+}
+    
+    
 
     //DO POST
     @Override
@@ -66,25 +82,38 @@ public class viewcontroller extends HttpServlet {
         String tipoEntidad = request.getParameter("tipoEntidad");  // Puede ser animal o humanoide
 
         // 2. Crear un objeto Animal o Humanoide con el ID ingresado. 
-        try {
-            if ("animal".equals(tipoEntidad)) {
-                Animal animal = new Animal();
-                animal.setId(id);
+    try {
+        
+ //ANIMAL---------------------------------------------------------------------------------------------------------------------------------------------
+        if ("animal".equals(tipoEntidad)) {
+            Animal animal = new Animal();
+            animal.setId(id);
 
-                // Lógica para obtener el nombre del animal
-                String nombreAnimal = daoAnimal.mostrarAnimal(animal);
-                request.setAttribute("nombreAnimal", nombreAnimal);
-                request.getRequestDispatcher("viewAnimal.jsp").forward(request, response);
+            // Lógica para obtener el nombre del animal
+            String nombreAnimal = daoAnimal.mostrarAnimal(animal);
+            request.setAttribute("nombreAnimal", nombreAnimal);
 
-            } else if ("humanoide".equals(tipoEntidad)) {
-                Humanoide humanoide = new Humanoide();
-                humanoide.setId(id);
+            // Obtener la lista completa de animales
+            List<Animal> animalList = daoAnimal.mostrarAnimalFull();
+            request.setAttribute("animalList", animalList);  // Pasamos la lista completa al JSP
 
-                // Lógica para obtener el nombre del humanoide
-                String nombreHumanoide = daoHumanoide.mostrarHumanoide(humanoide);
-                request.setAttribute("nombreHumanoide", nombreHumanoide);
-                request.getRequestDispatcher("viewHumanoid.jsp").forward(request, response);
+            request.getRequestDispatcher("viewAnimal.jsp").forward(request, response);
+            
+//HUMANOIDE---------------------------------------------------------------------------------------------------------------------------------------------
+        } else if ("humanoide".equals(tipoEntidad)) {
+            Humanoide humanoide = new Humanoide();
+            humanoide.setId(id);
 
+            // Lógica para obtener el nombre del humanoide
+            String nombreHumanoide = daoHumanoide.mostrarHumanoide(humanoide);
+            request.setAttribute("nombreHumanoide", nombreHumanoide);
+
+            // Obtener la lista completa de humanoides 
+            List<Humanoide> humanoideList = daoHumanoide.mostrarHumanoideFull();
+            request.setAttribute("humanoideList", humanoideList);  // Pasamos la lista completa al JSP
+
+            request.getRequestDispatcher("viewHumanoid.jsp").forward(request, response);
+//-----------------------------------------------------------------------------------------------------------------------------------------
             } else {
                 response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Tipo de entidad no especificado o inválido. Yo me cago en tus muelas estúpido programa de las narices");
             }

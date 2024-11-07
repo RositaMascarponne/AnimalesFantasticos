@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -33,7 +34,22 @@
                 <div class="column cont-right">
                     <h2 class="section-title">Lista de Animales</h2>
                     <div class="lista">
-                        <p>Aquí se mostrará la lista de animales.</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="animal" items="${animalList}">
+                                <tr>
+                                    <td>${animal.id}</td>
+                                    <td>${animal.nombre}</td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
                     </div>
                 </div>
             </div>
