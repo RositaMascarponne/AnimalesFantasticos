@@ -105,7 +105,7 @@ public class DAOHumanoide { //DAOHumanoide
         try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement st = conn.prepareStatement(sqlUpdate)) {
 
             st.setString(1, humanoide.getNombre()); // Asigna el nuevo nombre
-            st.setInt(2, humanoide.getId());             // Asigna el ID de la persona
+            st.setInt(2, humanoide.getId());             // Asigna el ID del hummanoide
 
             int rowsUpdated = st.executeUpdate(); // Ejecuta la actualización
 
