@@ -48,7 +48,7 @@ public class viewcontroller extends HttpServlet {
         if ("animal".equals(tipoEntidad)) {
             request.getRequestDispatcher("viewAnimal.jsp").forward(request, response);
         } else if ("humanoide".equals(tipoEntidad)) {
-            request.getRequestDispatcher("viewHumanoide.jsp").forward(request, response);
+            request.getRequestDispatcher("viewHumanoid.jsp").forward(request, response);
         } else {
             // Si no se especifica, redirigir a una página de error o a una página por defecto
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Tipo de entidad no especificado.");
@@ -74,7 +74,7 @@ public class viewcontroller extends HttpServlet {
                 // Lógica para obtener el nombre del animal
                 String nombreAnimal = daoAnimal.mostrarAnimal(animal);
                 request.setAttribute("nombreAnimal", nombreAnimal);
-                request.getRequestDispatcher("animalView.jsp").forward(request, response);
+                request.getRequestDispatcher("viewAnimal.jsp").forward(request, response);
 
             } else if ("humanoide".equals(tipoEntidad)) {
                 Humanoide humanoide = new Humanoide();
@@ -83,10 +83,10 @@ public class viewcontroller extends HttpServlet {
                 // Lógica para obtener el nombre del humanoide
                 String nombreHumanoide = daoHumanoide.mostrarHumanoide(humanoide);
                 request.setAttribute("nombreHumanoide", nombreHumanoide);
-                request.getRequestDispatcher("humanoideView.jsp").forward(request, response);
+                request.getRequestDispatcher("viewHumanoid.jsp").forward(request, response);
 
             } else {
-                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Tipo de entidad no especificado o inválido.");
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Tipo de entidad no especificado o inválido. Yo me cago en tus muelas estúpido programa de las narices");
             }
 
         } catch (SQLException e) {

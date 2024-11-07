@@ -19,6 +19,7 @@
                     <div class="form">
                         <form method="post" action="viewcontroller">
                             <label for="id" class="form-label">ID Animal:</label>
+                             <input type="hidden" name="tipoEntidad" value="animal">
                             <input type="text" id="id" name="id" class="form-input" required>
                             <button type="submit" class="submit-btn">Busca el animal</button>
                         </form>
