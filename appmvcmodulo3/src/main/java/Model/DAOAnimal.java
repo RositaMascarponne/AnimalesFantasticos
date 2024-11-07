@@ -12,20 +12,21 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  *
  * @author Rosita
  */
 public class DAOAnimal { //DAOHumanoide
-        //MOSTRAR ANIMAL SEGUN ID----------------------------------------------------------------------------
+    //MOSTRAR ANIMAL SEGUN ID----------------------------------------------------------------------------
+
     public String mostrarAnimal(Animal animal) throws SQLException {//mostrarHumanoide (Humanoide humanoide)
         String nombre = null;
         String sql = "SELECT animalnombre FROM animales WHERE animalid = ?";//Cambia animal por Humanoide
-        
+
         // Intentamos obtener la conexión desde DatabaseConnection
-        try (Connection conn = DatabaseConnection.getConnection(); 
-             PreparedStatement st = conn.prepareStatement(sql)) {
-            
+        try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement st = conn.prepareStatement(sql)) {
+
             st.setInt(1, animal.getId());//humanoide.getId() para el señorito Jordi
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
@@ -34,75 +35,85 @@ public class DAOAnimal { //DAOHumanoide
         }
         return nombre;
     }
-  /*  
+
     //Mostrar TODO-----------------------------------------------------------------------
-    
-public List<Personas> mostrarPersonaFull() throws SQLException {
-    List<Personas> personasList = new ArrayList<>();
-    String sql = "SELECT * FROM persona";
+    public List<Animal> mostrarPersonaFull() throws SQLException {
 
-    try (Connection conn = DatabaseConnection.getConnection();
-         PreparedStatement st = conn.prepareStatement(sql)) {
-         
-        ResultSet rs = st.executeQuery();
-        while (rs.next()) {
-            String nombre = rs.getString("personaNombre");
-            int id = rs.getInt("personaID"); // Asegúrate de obtener el ID también si es necesario
-            personasList.add(new Personas(id, nombre)); // Debes tener un constructor que acepte ID y nombre
-        }
-    }
-    return personasList;
-}
+        List<Animal> animalList = new ArrayList<>();
+        String sql = "SELECT * FROM animales";
 
-        
-        //ADD------------------------------------------------------------------
-    public Personas crearPersona(String nombre) throws SQLException {
-        String sql = "INSERT INTO persona(personaNombre) VALUES (?)";
-        
-        try (Connection conn = DatabaseConnection.getConnection(); 
-             PreparedStatement st = conn.prepareStatement(sql)) {
-            
-            st.setString(1, nombre);
-            st.executeUpdate();
+        try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement st = conn.prepareStatement(sql)) {
+
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                String nombre = rs.getString("animalnombre");
+                int id = rs.getInt("animalid"); 
+                animalList.add(new Animal(id, nombre)); 
+            }
         }
-        // Retorna una nueva instancia de Personas con el nombre creado
-        return new Personas(nombre);
+        return animalList;
     }
-        
-        //DELETE------------------------------------------------------------------
-        public int borrarPersona(int id) throws SQLException {
-       // String tipo = null;
-        String sql = "DELETE FROM persona WHERE personaID = ?";
-        
+
+    //ADD------------------------------------------------------------------
+    public Animal crearAnimal(Animal animal) throws SQLException {
+        String sql = "INSERT INTO animales(animalnombre) VALUES (?)";
+
+        try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement st = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
+
+            // Establecer el nombre del animal que se recibe como parámetro
+            st.setString(1, animal.getNombre());
+
+            // Ejecutar la inserción
+            int rowsAffected = st.executeUpdate();
+
+            // Si se insertaron filas, obtener el ID generado
+            if (rowsAffected > 0) {
+                try (ResultSet generatedKeys = st.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        // Obtener el ID generado y asignarlo al animal
+                        int idGenerado = generatedKeys.getInt(1); // Primer columna, el ID
+                        animal.setId(idGenerado); // Asignar el ID al objeto animal
+                    }
+                }
+            }
+        }
+
+        // Retornar el objeto animal con el ID asignado
+        return animal;
+    }
+
+    //DELETE-------------------------------------¿Qué voy a devolver si lo he borrao?
+    public void borrarAnimal(Animal animal) throws SQLException {
+
+        String sql = "DELETE FROM animales WHERE animalid = ?";
+
         // Intentamos obtener la conexión desde DatabaseConnection
-        try (Connection conn = DatabaseConnection.getConnection(); 
-             PreparedStatement st = conn.prepareStatement(sql)) {
-            
-            st.setInt(1, id);
-            
+        try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement st = conn.prepareStatement(sql)) {
+
+            st.setInt(1, animal.getId());
+
             st.executeUpdate();
 
         }
-        return id;
-    } 
-        
-         //ACTUALIZAR------------------------------------------------------------------
-public void actualizarPersona(int id, String nuevoNombre) throws SQLException {
-    String sqlUpdate = "UPDATE persona SET personaNombre = ? WHERE personaID = ?";
 
-    try (Connection conn = DatabaseConnection.getConnection();
-         PreparedStatement st = conn.prepareStatement(sqlUpdate)) {
-        
-        st.setString(1, nuevoNombre); // Asigna el nuevo nombre
-        st.setInt(2, id);             // Asigna el ID de la persona
+    }
 
-        int rowsUpdated = st.executeUpdate(); // Ejecuta la actualización
+    //ACTUALIZAR------------------------------------------------------------------
+    public void actualizarAnimal(Animal animal) throws SQLException {
+        String sqlUpdate = "UPDATE animales SET animalnombre= ? WHERE animalid = ?";
 
-        if (rowsUpdated > 0) {
-            System.out.println("Persona actualizada con éxito.");
-        } else {
-            System.out.println("No se encontró ninguna persona con el ID especificado.");
+        try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement st = conn.prepareStatement(sqlUpdate)) {
+
+            st.setString(1, animal.getNombre()); // Asigna el nuevo nombre
+            st.setInt(2, animal.getId());             // Asigna el ID de la persona
+
+            int rowsUpdated = st.executeUpdate(); // Ejecuta la actualización
+
+            if (rowsUpdated > 0) {
+                System.out.println("Animal actualizado con éxito.");
+            } else {
+                System.out.println("No se encontró ningun animal con el ID especificado.");
+            }
         }
     }
-}*/
 }
