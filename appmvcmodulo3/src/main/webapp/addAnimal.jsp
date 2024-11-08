@@ -57,6 +57,13 @@
                 </div>
             </div>
             
+                        <!-- Mensaje de confirmación centrado debajo de las columnas -->
+            <c:if test="${not empty confirmacion}">
+                <div class="confirmacion">
+                    <p>${confirmacion}</p>
+                </div>
+            </c:if>
+            
             <!-- Botón "Volver" centrado debajo de las columnas -->
             <div class="button-container">
                 <a id="return" href="http://localhost:8080/appmvcmodulo3">Volver</a>

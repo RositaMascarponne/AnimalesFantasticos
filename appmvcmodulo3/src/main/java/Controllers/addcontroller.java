@@ -94,6 +94,9 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 
                 // Llama al método de actualización en el DAO.
                 daoAnimal.crearAnimal(animal); //aqui llamas a la funcion add o del
+                
+                // Añadir mensaje de confirmación
+                request.setAttribute("confirmacion", "Se ha añadido \"" + nombreAnimal + "\"");
 
                 // Obtener la lista completa de animales. No tocar, esto es fijo en todos los servlets
                 List<Animal> animalList = daoAnimal.mostrarAnimalFull();
