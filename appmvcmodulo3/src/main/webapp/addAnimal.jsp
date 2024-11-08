@@ -15,32 +15,25 @@
     </head>
     <body>
         <header>
-
             <h1>Animales <span class="app">Fantásticos</span></h1>
-
         </header>
         <main>
             <div class="container">
                 <!-- Columna izquierda -->
                 <div class="column cont-left">
-                    <h2 class="section-title">Añadir Animales</h2> <!-- cambias actualizar por su función -->
+                    <h2 class="section-title">Añadir Animales</h2> 
                     <div class="form">
                         <form method="post" action="modcontroller">
-
-                            <input type="hidden" name="tipoEntidad" value="animal"> <!-- animal o humanoide segun convenga-->
-
-                            <label for="id" class="form-label">Añadir Animal:</label> <!--en add aqui va el nombre del nuevo animal o humanoide  -->
+                            <input type="hidden" name="tipoEntidad" value="animal"> 
+                            <label for="id" class="form-label">Añadir Animal:</label>
                             <input type="text" id="nombre" name="nombre" class="form-input" required>
-                            <button type="submit" class="submit-btn">Añadir el animal</button> <!-- o humanoide -->
+                            <button type="submit" class="submit-btn">Añadir el animal</button>
                         </form>
-                    </div>
-                    <div class="res">
-                        <p><strong>Nombre animal:</strong> ${nombreAnimal}</p><!-- o humanoide. Si estas borrando quita este <p> -->
                     </div>
                 </div>
 
                 <!-- Columna derecha -->
-                <div class="column cont-right"><!-- No tocar la lista, para humanoide, copia pega de viewHumanoid -->
+                <div class="column cont-right">
                     <h2 class="section-title">Lista de Animales</h2> 
                     <div class="lista">
                         <table>
@@ -51,20 +44,23 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <c:forEach var="animal" items="${animalList}">
-                                <tr>
-                                    <td>${animal.id}</td>
-                                    <td>${animal.nombre}</td>
-                                </tr>
-                            </c:forEach>
+                                <c:forEach var="animal" items="${animalList}">
+                                    <tr>
+                                        <td>${animal.id}</td>
+                                        <td>${animal.nombre}</td>
+                                    </tr>
+                                </c:forEach>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-            <div>
-            <a  id='return' href='http://localhost:8080/appmvcmodulo3'>Volver</a>
-        </div> <!-- Hasta aqui -->
+            
+            <!-- Botón "Volver" centrado debajo de las columnas -->
+            <div class="button-container">
+                <a id="return" href="http://localhost:8080/appmvcmodulo3">Volver</a>
+            </div> 
+
         </main>
  
         <footer>
