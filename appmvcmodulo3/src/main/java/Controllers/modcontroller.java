@@ -97,9 +97,13 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
             Animal animal = new Animal();
             animal.setId(id);
             animal.setNombre(nombreAnimal);  // Asigna el nuevo nombre ingresado
+            
 
             // Llama al método de actualización en el DAO.
             daoAnimal.actualizarAnimal(animal);//aqui llamas a la funcion add o del
+            // Añadir mensaje de confirmación
+            request.setAttribute("confirmacion", "Se ha cambiado el nombre a \"" + nombreAnimal + "\" correctamente!");
+
             request.setAttribute("nombreAnimal", nombreAnimal);
             // Obtener la lista completa de animales. No tocar, esto es fijo en todos los servlets
             List<Animal> animalList = daoAnimal.mostrarAnimalFull();
@@ -119,6 +123,9 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
  
             // Llama al método de actualización en el DAO.
             daoHumanoide.actualizarHumanoide(humanoide);
+            // Añadir mensaje de confirmación
+            request.setAttribute("confirmacion", "Se ha cambiado el nombre a \"" + nombreHumanoide + "\" correctamente!");
+            
             request.setAttribute("nombreHumanoide", nombreHumanoide);
             
             // Obtener la lista completa de humanoides 
