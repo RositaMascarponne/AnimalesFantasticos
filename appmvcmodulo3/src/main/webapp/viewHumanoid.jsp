@@ -24,12 +24,14 @@
                 <div class="column cont-left">
                     <h2 class="section-title">Mostrar Humanoides</h2>
                     <div class="form">
+                        
                         <form method="post" action="viewcontroller">
                             <label for="id" class="form-label">ID Humanoide:</label>
                             <input type="hidden" name="tipoEntidad" value="humanoide">
                             <input type="text" id="id" name="id" class="form-input" required>
                             <button type="submit" class="submit-btn">Busca el humanoide</button>
                         </form>
+                        
                     </div>
                     <div class="res">
                         <p><strong>Nombre:</strong> ${nombreHumanoide}</p>
