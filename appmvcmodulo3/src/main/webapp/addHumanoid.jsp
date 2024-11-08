@@ -23,7 +23,7 @@
                 <div class="column cont-left">
                     <h2 class="section-title">Añadir Humanoide</h2> 
                     <div class="form">
-                        <form method="post" action="modcontroller">
+                        <form method="post" action="addcontroller">
                             <input type="hidden" name="tipoEntidad" value="humanoide"> 
                             <label for="id" class="form-label">Añadir Humanoide:</label>
                             <input type="text" id="nombre" name="nombre" class="form-input" required>
