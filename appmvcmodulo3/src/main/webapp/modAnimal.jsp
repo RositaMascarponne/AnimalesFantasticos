@@ -38,11 +38,11 @@
                             <br><!--lo borras -->
                             <br><!--lo borras -->
                             
-                            <button type="submit" class="submit-btn">Busca el animal</button> <!-- o humanoide -->
+                            <button type="submit" class="submit-btn">Actualiza el animal</button> <!-- o humanoide -->
                         </form>
                     </div>
                     <div class="res">
-                        <p><strong>Nombre animal:</strong> ${nombreAnimal}</p><!-- o humanoide -->
+                        <p><strong>Nombre animal:</strong> ${nombreAnimal}</p><!-- o humanoide. Si estas borrando quita este <p> -->
                     </div>
                 </div>
                 
