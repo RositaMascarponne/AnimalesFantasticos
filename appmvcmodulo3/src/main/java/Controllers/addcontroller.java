@@ -12,6 +12,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+//INTRUCCIONES DE USO:
+//1.Copia/pega esos imports y el package de mi controller
+//2.Borra lo que te indico
+//3. Abajo, despliega la cruz que por alla en la linea 52 (ahi te explico porque)
+//5.Borra processRequest(request, response); del doGet y del doPost
+//5. Listo para programar!!
+
 /**
  *
  * @author Rosita
@@ -28,7 +35,7 @@ public class addcontroller extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)//Borra desde aqui
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
@@ -43,9 +50,10 @@ public class addcontroller extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         }
-    }
+    }//hasta aqui, que sí, no vamos a necesitar el html y no vas a usar el process request si no doGet y doPost
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+  //Si esta esta pelgado en un +, dale al +, te desplegará el doGet y doPost que estan escondidos 
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
