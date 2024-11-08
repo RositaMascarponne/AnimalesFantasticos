@@ -70,11 +70,23 @@
                     </div>
                 </div>
             </div> <!-- Hasta aqui -->
-        </main>
-        <footer>
-                <a  id='return' href='http://localhost:8080/appmvcmodulo3'>Volver</a>
-         </footer>   
-       
+            <!-- Botón "Volver" centrado debajo de las columnas -->
+            <div class="button-container">
+                <a id="return" href="http://localhost:8080/appmvcmodulo3">Volver</a>
+            </div> 
 
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2024 Rozzita Mascarpone & Jordi el Chupacabra. Todos los derechos reservados y todos los zurdos muy habladores.</p>
+                <div class="footer-links">
+                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Aviso Legal</a>
+                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Contacto</a>
+                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Política de Privacidad</a>
+                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Política de Cookies</a>
+                </div>
+            </div>
+        </footer>
     </body>
 </html>
