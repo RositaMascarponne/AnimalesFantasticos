@@ -22,7 +22,7 @@ public class DatabaseConnection {
             
             // Establecer la conexión
             connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3308"
+                    "jdbc:mysql://localhost:3306"
                             + "/appmvcmodulo3?useSSL=false", // Desactivar SSL
                     "root", 
                     "root");
