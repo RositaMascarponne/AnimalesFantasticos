@@ -100,7 +100,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 
             // Llama al método de actualización en el DAO.
             daoAnimal.actualizarAnimal(animal);//aqui llamas a la funcion add o del
-
+            request.setAttribute("nombreAnimal", nombreAnimal);
             // Obtener la lista completa de animales. No tocar, esto es fijo en todos los servlets
             List<Animal> animalList = daoAnimal.mostrarAnimalFull();
             request.setAttribute("animalList", animalList);  // Pasamos la lista completa al JSP
@@ -114,10 +114,12 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
             humanoide.setId(id);
 
             humanoide.setNombre(nombreHumanoide);  // Asigna el nuevo nombre ingresado
-
+            
+            
+ 
             // Llama al método de actualización en el DAO.
             daoHumanoide.actualizarHumanoide(humanoide);
-            
+            request.setAttribute("nombreHumanoide", nombreHumanoide);
             
             // Obtener la lista completa de humanoides 
             List<Humanoide> humanoideList = daoHumanoide.mostrarHumanoideFull();
