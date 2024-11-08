@@ -44,7 +44,7 @@ public class modcontroller extends HttpServlet {
 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     String tipoEntidad = request.getParameter("tipoEntidad");
 
-    try {//INICIO DE LAS LISTAS, SE COPIA Y PEGA PERO NO SE TOCA-----V-V-V------------------
+    try {//INICIO DE LAS LISTAS, SE COPIA Y PEGA PERO NO SE TOCA-----V-V-V------------------(PEGALO EN TUS CONTROLLERS)
         
     //ANIMAL---------------------------------------------------------------------------------------------------------------------------------------------
         if ("animal".equals(tipoEntidad)) {
@@ -79,7 +79,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
         // 1. Obtener el ID del animal desde el formulario (para los servelts del, view y mod)
         // Para el servlet de add necesitamos el nombre
         
-        String idStr = request.getParameter("id"); //esto recoge la id del formulario. Ojo! Es String!
+        String idStr = request.getParameter("id"); //esto recoge la id del formulario. Ojo! Es String!EN ADD RECOGE UN NOMBRE
         int id = Integer.parseInt(idStr);  // Convertimos a int el ID que ingresa el usuario. Problema arregaldo. Borrar esta linea en add
         
         
@@ -93,13 +93,13 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
  //ANIMAL---------------------------------------------------------------------------------------------------------------------------------------------
         if ("animal".equals(tipoEntidad)) {
             // Crear y configurar el objeto Animal para actualizar.
-            String nombreAnimal=request.getParameter("nombre");
+            String nombreAnimal=request.getParameter("nombre");//nombreAnimal es el nombre recogido del formulario
             Animal animal = new Animal();
             animal.setId(id);
             animal.setNombre(nombreAnimal);  // Asigna el nuevo nombre ingresado
 
             // Llama al método de actualización en el DAO.
-            daoAnimal.actualizarAnimal(animal);
+            daoAnimal.actualizarAnimal(animal);//aqui llamas a la funcion add o del
 
             // Obtener la lista completa de animales. No tocar, esto es fijo en todos los servlets
             List<Animal> animalList = daoAnimal.mostrarAnimalFull();
