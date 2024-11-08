@@ -72,56 +72,55 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
     
     
 
-    //DO POST
+//DO POST
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // 1. Obtener el ID del animal desde el formulario (para los servelts del, view y mod)
         // Para el servlet de add necesitamos el nombre
-        
         String idStr = request.getParameter("nombre"); //esto recoge la id del formulario. Ojo! Es String!EN ADD RECOGE UN NOMBRE
-        
-        
-        
 
         String tipoEntidad = request.getParameter("tipoEntidad");  // Puede ser animal o humanoide. No tocar en ningun servlet, es general esto
 
         // 2. Crear un objeto Animal o Humanoide con el ID ingresado. 
-    try {
-        
- //ANIMAL---------------------------------------------------------------------------------------------------------------------------------------------
-        if ("animal".equals(tipoEntidad)) {
-            // Crear y configurar el objeto Animal para actualizar.
-            String nombreAnimal=request.getParameter("nombre");//nombreAnimal es el nombre recogido del formulario
-            Animal animal = new Animal();
-            animal.setNombre(nombreAnimal);  // Asigna el nuevo nombre ingresado
+        try {
 
-            // Llama al método de actualización en el DAO.
-            daoAnimal.crearAnimal(animal);//aqui llamas a la funcion add o del
+            //ANIMAL---------------------------------------------------------------------------------------------------------------------------------------------
+            if ("animal".equals(tipoEntidad)) {
+                // Crear y configurar el objeto Animal para actualizar.
+                String nombreAnimal = request.getParameter("nombre"); //nombreAnimal es el nombre recogido del formulario
+                Animal animal = new Animal();
+                animal.setNombre(nombreAnimal);  // Asigna el nuevo nombre ingresado
 
-            // Obtener la lista completa de animales. No tocar, esto es fijo en todos los servlets
-            List<Animal> animalList = daoAnimal.mostrarAnimalFull();
-            request.setAttribute("animalList", animalList);  // Pasamos la lista completa al JSP
+                // Llama al método de actualización en el DAO.
+                daoAnimal.crearAnimal(animal); //aqui llamas a la funcion add o del
 
-            request.getRequestDispatcher("addAnimal.jsp").forward(request, response);//<<<<-------------------REQUESTDISPATCHER!!!
-            
-//HUMANOIDE---------------------------------------------------------------------------------------------------------------------------------------------
-        } else if ("humanoide".equals(tipoEntidad)) {
-            String nombreHumanoide=request.getParameter("nombre");
-            Humanoide humanoide = new Humanoide();
+                // Obtener la lista completa de animales. No tocar, esto es fijo en todos los servlets
+                List<Animal> animalList = daoAnimal.mostrarAnimalFull();
+                request.setAttribute("animalList", animalList);  // Pasamos la lista completa al JSP
 
-            humanoide.setNombre(nombreHumanoide);  // Asigna el nuevo nombre ingresado
+                request.getRequestDispatcher("addAnimal.jsp").forward(request, response); //<<<<-------------------REQUESTDISPATCHER!!!
 
-            // Llama al método de actualización en el DAO.
-            daoHumanoide.crearHumanoide(humanoide);
-            
-            
-            // Obtener la lista completa de humanoides 
-            List<Humanoide> humanoideList = daoHumanoide.mostrarHumanoideFull();
-            request.setAttribute("humanoideList", humanoideList);  // Pasamos la lista completa al JSP
+                //HUMANOIDE---------------------------------------------------------------------------------------------------------------------------------------------
+            } else if ("humanoide".equals(tipoEntidad)) {
+                String nombreHumanoide = request.getParameter("nombre");
+                Humanoide humanoide = new Humanoide();
 
-            request.getRequestDispatcher("addHumanoid.jsp").forward(request, response);//<<<<-------------------REQUESTDISPATCHER!!!
-//-----------------------------------------------------------------------------------------------------------------------------------------
+                humanoide.setNombre(nombreHumanoide);  // Asigna el nuevo nombre ingresado
+
+                // Llama al método de actualización en el DAO.
+                daoHumanoide.crearHumanoide(humanoide);
+
+                // Añadir mensaje de confirmación
+                request.setAttribute("confirmacion", "Se ha añadido \"" + nombreHumanoide + "\"");
+
+                // Obtener la lista completa de humanoides 
+                List<Humanoide> humanoideList = daoHumanoide.mostrarHumanoideFull();
+                request.setAttribute("humanoideList", humanoideList);  // Pasamos la lista completa al JSP
+
+                request.getRequestDispatcher("addHumanoid.jsp").forward(request, response); //<<<<-------------------REQUESTDISPATCHER!!!
+
+                //-----------------------------------------------------------------------------------------------------------------------------------------
             } else {
                 response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Tipo de entidad no especificado o inválido. Yo me cago en tus muelas estúpido programa de las narices");
             }
@@ -135,6 +134,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Formato de ID inválido.");
         }
     }
+
     
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

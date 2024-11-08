@@ -24,7 +24,7 @@
                 <div class="column cont-left">
                     <h2 class="section-title">Borrar Animales</h2> 
                     <div class="form">
-                        <form method="post" action="modcontroller">
+                        <form method="post" action="delcontroller">
                             <input type="hidden" name="tipoEntidad" value="animal"> 
                             <label for="id" class="form-label">Borrar Animal por id:</label>
                             <input type="text" id="id" name="id" class="form-input" required>

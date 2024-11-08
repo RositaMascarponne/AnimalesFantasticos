@@ -24,7 +24,7 @@
                 <div class="column cont-left">
                     <h2 class="section-title">Borrar Humanoides</h2> 
                     <div class="form">
-                        <form method="post" action="modcontroller">
+                        <form method="post" action="delcontroller">
                             <input type="hidden" name="tipoEntidad" value="humanoide"> 
                             <label for="id" class="form-label">Borrar Humanoide por id:</label>
                             <input type="text" id="id" name="id" class="form-input" required>
